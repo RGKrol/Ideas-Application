@@ -19,9 +19,9 @@ public class CategoryDao {
 
     private static final String PATH = "./categories.txt";
 
-    private static Logger LOG = Logger.getLogger(CategoryDao.class.getName());
+    private static final Logger LOG = Logger.getLogger(CategoryDao.class.getName());
 
-    private ObjectMapper objectMapper;  //służy do mapowania obiektu
+    private final ObjectMapper objectMapper;  //służy do mapowania obiektu
 
     public CategoryDao() {
         this.objectMapper = new ObjectMapper();
@@ -52,6 +52,7 @@ public class CategoryDao {
             for (Category cat : categories) {
                 if (Objects.equals(cat.getName(), category.getName())) {
                     repeat = true;
+                    break;
                 }
             }
             if (!repeat) {

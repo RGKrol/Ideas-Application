@@ -36,24 +36,20 @@ public class QuestionCommandHandler extends BaseCommandHandler {
         }
 
         switch (command.getAction()) {
-            case LIST:
+            case LIST -> {
                 LOG.info("List of questions (Lista pytań) ...");
-
                 if (!command.getParam().isEmpty()) {
                     throw new IllegalArgumentException("category list doesn't support any additional params (polecenie 'question' list nie wspiera dodatkowych parametrów)");
                 }
-
                 List<Question> questions = questionDao.findAll();
                 questions.forEach(System.out::println);
-                break;
-            case ADD:
+            }
+            case ADD -> {
                 // question add CategoryName QuestionName
                 LOG.info(String.format("Add question in category %s (Dodawanie pytania w kategorii %s) ...", command.getParam().get(0), command.getParam().get(0)));
-
                 if (command.getParam().size() != 2) {
-                    throw new IllegalArgumentException("Wrong command format. Check help for more information. (Zły format polecenia. Sprawdź help aby uzyskać więcej informacji)");
+                    throw new IllegalArgumentException("Wrong command format. Check help for more information. (Zły format polecenia. Sprawdź help aby uzyskać więcej informacji.)");
                 }
-
                 String categoryName = command.getParam().get(0);
                 String questionName = command.getParam().get(1);
                 Category category = categoryDao.findOne(categoryName)   //zwraca optionala jeżeli znajdzie kategorie
@@ -61,8 +57,9 @@ public class QuestionCommandHandler extends BaseCommandHandler {
 
                 //dodajemy pytanie
                 questionDao.add(new Question(questionName, category));
-                break;
-            default: {
+                System.out.println(" ");
+            }
+            default -> {
                 throw new IllegalArgumentException(String.format("Unknown action: %s from command: %s (Nieznana akcja: %s dla komendy: %s)",
                         command.getAction(), command.getCommand(), command.getAction(), command.getCommand()));
             }

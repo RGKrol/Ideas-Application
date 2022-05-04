@@ -21,20 +21,14 @@ public class Question {
         return name;
     }
 
-    public Category getCategory() {
-        return category;
-    }
-
     public List<Answer> getAnswers() {
         return answers;
     }
 
     @Override
     public String toString() {
-        return "Question{" +
-                "name='" + name + '\'' +
-                ", category=" + category +
-                ", answers=" + answers +
-                '}';
+        return "Question: '" + name + '\'' +
+                ", category: '" + category +
+                "', answers: " + answers.size();
     }
 }

@@ -60,7 +60,7 @@ class UserInputCommandTest {
 
         // then
         Assertions.assertEquals("command", userInputCommand.getCommand());
-        Assertions.assertEquals(null, userInputCommand.getAction());
+        Assertions.assertNull(userInputCommand.getAction());
         Assertions.assertEquals(0, userInputCommand.getParam().size());
     }
 }

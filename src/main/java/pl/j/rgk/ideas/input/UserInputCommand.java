@@ -14,7 +14,7 @@ public class UserInputCommand {
     private List<String> param;
 
     /**
-     * ategory list -> categoryList(); //to ma uruchomić wskazaną metodę;
+     * category list -> categoryList(); //to ma uruchomić wskazaną metodę;
      * category add CategoryName    -> categoryAdd(CategoryName);
      * <p>
      * quit -> quitApplication();

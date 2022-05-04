@@ -35,39 +35,33 @@ public class AnswerCommandHandler extends BaseCommandHandler {
         }
 
         switch (command.getAction()) {
-            case LIST:
+            case LIST -> {
                 LOG.info("List of answers (Lista odpowiedzi) ...");
-
                 if (command.getParam().size() != 1) {
                     throw new IllegalArgumentException("Wrong command format. Check help for more information. (Zły format polecenia. Sprawdź 'help' aby uzyskać więcej informacji)");
                 }
-
                 String questionName = command.getParam().get(0);
                 Question question = questionDao.findOne(questionName)
                         .orElseThrow(() -> new IllegalArgumentException("Question not found " + questionName));
                 //po tym poleceniu pod question jest już wskazane pytanie
 
                 displayQuestion(question);//wyświetlenie odpowiedzi dla wskazanego pytania
-                break;
-
-            case ADD:
+            }
+            case ADD -> {
                 // answer add QuestionName AnswerName
                 LOG.info(String.format("Add answer in question %s (Dodawanie odpowiedzi dla pytania %s) ...", command.getParam().get(0), command.getParam().get(0)));
-
                 if (command.getParam().size() != 2) {
                     throw new IllegalArgumentException("Wrong command format. Check help for more information. (Zły format polecenia. Sprawdź help aby uzyskać więcej informacji)");
                 }
-
-                questionName = command.getParam().get(0);
+                String questionName = command.getParam().get(0);
                 String answerName = command.getParam().get(1);
 
                 //pobieramy pytanie do którego dodajemy odpowiedź
-                question = questionDao.findOne(questionName)
+                Question question = questionDao.findOne(questionName)
                         .orElseThrow(() -> new IllegalArgumentException("Question not found " + questionName));
                 questionDao.addAnswer(question, new Answer(answerName));
-
-                break;
-            default: {
+            }
+            default -> {
                 throw new IllegalArgumentException(String.format("Unknown action: %s from command: %s (Nieznana akcja: %s dla komendy: %s)",
                         command.getAction(), command.getCommand(), command.getAction(), command.getCommand()));
             }

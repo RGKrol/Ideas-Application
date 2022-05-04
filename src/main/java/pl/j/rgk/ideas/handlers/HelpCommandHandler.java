@@ -6,7 +6,7 @@ import java.util.logging.Logger;
 
 public class HelpCommandHandler extends BaseCommandHandler {
 
-    private static Logger LOG = Logger.getLogger(HelpCommandHandler.class.getName());
+    private static final Logger LOG = Logger.getLogger(HelpCommandHandler.class.getName());
 
     public static final String COMMAND_NAME = "help";
 

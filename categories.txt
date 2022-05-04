@@ -1,1 +1,1 @@
-[{"name":"c1"},{"name":"c2"}]
+[{"name":"Czas_wolny"},{"name":"praca"},{"name":"t"}]

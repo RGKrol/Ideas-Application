@@ -11,9 +11,9 @@ public class CategoryCommandHandler extends BaseCommandHandler {
 
     private static final String COMMAND_NAME = "category";
 
-    private static Logger LOG = Logger.getLogger(CategoryCommandHandler.class.getName());
+    private static final Logger LOG = Logger.getLogger(CategoryCommandHandler.class.getName());
 
-    private CategoryDao categoryDao;
+    private final CategoryDao categoryDao;
 
     public CategoryCommandHandler() {
         categoryDao = new CategoryDao();
@@ -36,27 +36,23 @@ public class CategoryCommandHandler extends BaseCommandHandler {
         }
 
         switch (command.getAction()) {
-            case LIST:
+            case LIST -> {
                 LOG.info("List of category (Lista kategorii) ...");
-
                 if (!command.getParam().isEmpty()) {
                     throw new IllegalArgumentException("'category list' doesn't support any additional params (polecenie 'category list' nie wspiera dodatkowych parametrów)");
                 }
-
                 List<Category> categories = categoryDao.findAll();
                 categories.forEach(System.out::println);    //metoda forEach przeiteruje po categories i wykona na nich "println" z System.out
-                break;
-            case ADD:
+            }
+            case ADD -> {
                 LOG.info("Add category (Dodawanie kategorii) ...");
-
                 if (command.getParam().size() != 1) {
                     throw new IllegalArgumentException("wrong command format. Check help for more information (zły format polecenia. Sprawdź help aby uzyskać więcej informacji)");
                 }
-
                 String categoryName = command.getParam().get(0);
                 categoryDao.add(new Category(categoryName));
-                break;
-            default: {
+            }
+            default -> {
                 throw new IllegalArgumentException(String.format("Unknown action: %s from command: %s (Nieznana akcja: %s dla komendy: %s)",
                         command.getAction(), command.getCommand(), command.getAction(), command.getCommand()));
             }

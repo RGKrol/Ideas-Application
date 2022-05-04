@@ -52,6 +52,7 @@ public class QuestionDao {
         for (Question q : questions) {
             if (Objects.equals(q.getName(), question.getName())) {
                 repeat = true;
+                break;
             }
         }
         if (!repeat) {
@@ -91,6 +92,7 @@ public class QuestionDao {
                 for (Answer a : q.getAnswers()) {
                     if (Objects.equals(a.getName(), answer.getName())) {
                         repeat = true;
+                        break;
                     }
                 }
                 if (!repeat) {
