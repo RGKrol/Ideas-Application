@@ -17,8 +17,6 @@ public class HelpCommandHandler extends BaseCommandHandler {
             System.out.println("Help (Pomoc)");
             System.out.println("The application stores a database of answers to questions sorted into unique categories.");
             System.out.println("(Aplikacja przechowuje bazę odpowiedzi na pytania posegregowane na niepowtarzalne kategorie.)\n");
-            System.out.println("");
-
             System.out.println("Allowed command (obsługiwane komendy): help, quite, category, question, answer");
             System.out.println("Command pattern (konstrukcja polecenia): <command> <action> <param1> <param2>");
             System.out.println("Example (przykład): category add CategoryName");
@@ -30,6 +28,9 @@ public class HelpCommandHandler extends BaseCommandHandler {
                     LOG.info("Help for (Pomoc dla): <help>");
                     System.out.println("The <help> command shows some basic help. (Komenda <help> wyświetla podstawową pomoc.)");
                     System.out.println("The <help help> command displays this help. (Komenda <help help> wyświetla tę pomoc.)");
+                    System.out.println("\nAuthor: Robert G. Król, contact (kontakt): rgkrol@gmail.com\n");
+                    System.out.println("This is my first Java program. Please bear with me and contact me about any shortcomings.");
+                    System.out.println("(To mój pierwszy program w Java. Proszę o wyrozumiałość i o kontakt w sprawie niedociągnięć.)");
                     break;
 
                 case QUITE:
