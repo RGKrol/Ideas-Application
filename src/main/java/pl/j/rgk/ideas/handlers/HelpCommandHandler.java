@@ -24,21 +24,19 @@ public class HelpCommandHandler extends BaseCommandHandler {
         } else if (command.getParam().isEmpty()) {
 
             switch (command.getAction()) {
-                case HELP:
+                case HELP -> {
                     LOG.info("Help for (Pomoc dla): <help>");
                     System.out.println("The <help> command shows some basic help. (Komenda <help> wyświetla podstawową pomoc.)");
                     System.out.println("The <help help> command displays this help. (Komenda <help help> wyświetla tę pomoc.)");
                     System.out.println("\nAuthor: Robert G. Król, contact (kontakt): rgkrol@gmail.com\n");
                     System.out.println("This is my first Java program. Please bear with me and contact me about any shortcomings.");
                     System.out.println("(To mój pierwszy program w Java. Proszę o wyrozumiałość i o kontakt w sprawie niedociągnięć.)");
-                    break;
-
-                case QUITE:
+                }
+                case QUITE -> {
                     LOG.info("Help for (Pomoc dla): <quite>");
                     System.out.println("Command <quite> closes the program. (Polecenie <quite> zamyka program.)");
-                    break;
-
-                case CATEGORY:
+                }
+                case CATEGORY -> {
                     LOG.info("Help for (Pomoc dla): <category>");
                     System.out.println("The <category> command supports categories. (Polecenie <category> obsługuje kategorie.)");
                     System.out.println("Supported Actions (Obsługiwane akcje): list, add, del");
@@ -50,9 +48,8 @@ public class HelpCommandHandler extends BaseCommandHandler {
                     System.out.println();
                     System.out.println("del: deletes the selected category. (usuwa wskazaną kategorię.)");
                     System.out.println("Example (Przykład): category del DeletedCategory");
-                    break;
-
-                case QUESTION:
+                }
+                case QUESTION -> {
                     LOG.info("Help for (Pomoc dla): <question> ");
                     System.out.println("The <question> command supports questions. (Polecenie <question> obsługuje pytania.)");
                     System.out.println("Questions are always assigned to one category. (Pytania są zawsze przypisane do jednej kategorii.)");
@@ -70,9 +67,8 @@ public class HelpCommandHandler extends BaseCommandHandler {
                     System.out.println();
                     System.out.println("del: deletes the indicated question and the answers to it (kasuje wskazane pytanie i odpowiadające na nie odpowiedzi)");
                     System.out.println("Example (Przykład): question del DeletedQuestion");
-                    break;
-
-                case ANSWER:
+                }
+                case ANSWER -> {
                     LOG.info("Help for (Pomoc dla): <answer>");
                     System.out.println("The <answer> command supports answers. (Polecenie <answer> obsługuje odpowiedzi.)");
                     System.out.println("The answer is associated with a specific question. (Odpowiedź jest przypisana do konkretnego pytania.)");
@@ -90,15 +86,13 @@ public class HelpCommandHandler extends BaseCommandHandler {
                     System.out.println();
                     System.out.println("del: deletes the answer to the selected question (kasuje odpowiedź do wskazanego pytania)");
                     System.out.println("Example (Przykład): answer del Question DeletedAnswer");
-                    break;
-
-                default:
-                    throw new IllegalArgumentException(String.format("Unknown action (Nieznana akcja): %s from command (dla komendy): %s",
-                            command.getAction(), command.getCommand()));
+                }
+                default -> throw new IllegalArgumentException(String.format("Unknown action (Nieznana akcja): %s from command (dla komendy): %s",
+                        command.getAction(), command.getCommand()));
             }
 
         } else {
-            throw new IllegalArgumentException(String.format("Incorrect command format, see \"help\". (Nieprawidłowy format polecenia, sprawdź \"help\")."));
+            throw new IllegalArgumentException("Incorrect command format, see \"help\". (Nieprawidłowy format polecenia, sprawdź \"help\").");
         }
     }
 
