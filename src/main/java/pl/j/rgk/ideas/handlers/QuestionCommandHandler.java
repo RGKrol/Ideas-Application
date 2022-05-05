@@ -59,6 +59,18 @@ public class QuestionCommandHandler extends BaseCommandHandler {
                 questionDao.add(new Question(questionName, category));
                 System.out.println(" ");
             }
+            case DEL -> {
+                LOG.info("Deleting question (Usuwanie pytania)");
+                if (command.getParam().size() != 2) {
+                    throw new IllegalArgumentException("Wrong command format. Check help for more information. (Zły format polecenia. Sprawdź help aby uzyskać więcej informacji.)");
+                }
+                String categoryName = command.getParam().get(0);
+                String questionName = command.getParam().get(1);
+                Category category = categoryDao.findOne(categoryName)
+                        .orElseThrow(() -> new IllegalArgumentException("Category not found: (Kategoria nie znaleziona): " + categoryName));
+
+                questionDao.del(new Question(questionName, category));
+            }
             default -> {
                 throw new IllegalArgumentException(String.format("Unknown action: %s from command: %s (Nieznana akcja: %s dla komendy: %s)",
                         command.getAction(), command.getCommand(), command.getAction(), command.getCommand()));

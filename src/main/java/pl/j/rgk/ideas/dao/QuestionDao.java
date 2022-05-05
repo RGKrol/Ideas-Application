@@ -58,14 +58,14 @@ public class QuestionDao {
         if (!repeat) {
             questions.add(question); //dodajemy pytanie do listy
         } else {
-            LOG.log(Level.INFO, "This question exists. (Te pytanie już istnieje.)");
+            LOG.log(Level.INFO, "This question exists. (To pytanie już istnieje.)");
         }
 
         saveQuestions(questions);
     }
 
     private void saveQuestions(List<Question> questions) {
-        // objectMapper.writeValueAsString(question); <-- zmiana listy pytań na jackson'a
+        // objectMapper.writeValueAsString(questions); <-- zmiana listy na jackson'a
         try {
             Files.writeString(Paths.get(PATH), objectMapper.writeValueAsString(questions));
         } catch (IOException e) {
@@ -103,6 +103,12 @@ public class QuestionDao {
 
             }
         }
+        saveQuestions(questions);
+    }
+
+    public void del(Question question) {
+        List<Question> questions = getQuestions();
+        questions.remove(question);
         saveQuestions(questions);
     }
 }

@@ -75,4 +75,14 @@ public class CategoryDao {
                 //tak aby zawierała tylko pasujące kategorie
                 .findAny();     //nam potrzeba dowolny z wyników
     }
+
+    public void del(Category category) {
+        try {
+            List<Category> categories = getCategories();
+            categories.remove(category);
+            Files.writeString(Paths.get(PATH), objectMapper.writeValueAsString(categories));
+        } catch (IOException e) {
+            LOG.log(Level.WARNING, "Error on del Category", e);
+        }
+    }
 }
