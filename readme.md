@@ -69,3 +69,13 @@
 
 ### (1.10.1) dodanie del (delete)
 - dla Category
+
+### (1.13.0) poprawki
+- help
+
+### (1.14.0) del
+- pełna obsługa usuwania 
+- poprawienie kilku pomniejszych błędów
+
+### (1.14.1) baza danch
+- uzupełnienie bazy danch do testów
