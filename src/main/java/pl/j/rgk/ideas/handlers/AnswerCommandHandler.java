@@ -51,7 +51,7 @@ public class AnswerCommandHandler extends BaseCommandHandler {
                 // answer add QuestionName AnswerName
                 LOG.info(String.format("Add answer in question %s (Dodawanie odpowiedzi dla pytania %s) ...", command.getParam().get(0), command.getParam().get(0)));
                 if (command.getParam().size() != 2) {
-                    throw new IllegalArgumentException("Wrong command format. Check help for more information. (Zły format polecenia. Sprawdź help aby uzyskać więcej informacji)");
+                    throw new IllegalArgumentException("Wrong command format. Check help for more information. (Zły format polecenia. Sprawdź help aby uzyskać więcej informacji.)");
                 }
                 String questionName = command.getParam().get(0);
                 String answerName = command.getParam().get(1);
@@ -61,6 +61,17 @@ public class AnswerCommandHandler extends BaseCommandHandler {
                         .orElseThrow(() -> new IllegalArgumentException("Question not found " + questionName));
                 questionDao.addAnswer(question, new Answer(answerName));
             }
+            case DEL -> {
+                String answerName   = command.getParam().get(1);
+                String questionName = command.getParam().get(0);
+
+                LOG.info(String.format("Deleting answer %s in question %s. (Usuwanie odpowiedzi %s z pytania %s.)", answerName, questionName, answerName, questionName));
+
+                Question question = questionDao.findOne(questionName)
+                        .orElseThrow(()-> new IllegalArgumentException("Question not found (Pytanie nie znalezione): " + questionName));
+                questionDao.delAnswer(question, new Answer(answerName));
+            }
+
             default -> {
                 throw new IllegalArgumentException(String.format("Unknown action: %s from command: %s (Nieznana akcja: %s dla komendy: %s)",
                         command.getAction(), command.getCommand(), command.getAction(), command.getCommand()));
@@ -69,7 +80,7 @@ public class AnswerCommandHandler extends BaseCommandHandler {
     }
 
     private void displayQuestion(Question question) {
-        System.out.println(question.getName());
+        System.out.println("Question - " + question.getName() + ':');
         question.getAnswers().forEach(System.out::println);
     }
 }

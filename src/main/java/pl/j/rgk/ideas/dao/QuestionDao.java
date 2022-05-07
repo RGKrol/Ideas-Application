@@ -7,6 +7,7 @@ import pl.j.rgk.ideas.model.Question;
 
 import java.io.IOException;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
@@ -109,6 +110,18 @@ public class QuestionDao {
     public void del(Question question) {
         List<Question> questions = getQuestions();
         questions.remove(question);
+        saveQuestions(questions);
+    }
+
+    public void delAnswer(Question question, Answer answer) {
+        List<Question> questions = getQuestions();
+
+        for (Question q : questions) {
+            if (Objects.equals(q.getName(), question.getName())) {
+                q.getAnswers().remove(answer);
+            }
+        }
+
         saveQuestions(questions);
     }
 }

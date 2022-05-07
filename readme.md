@@ -1,4 +1,6 @@
-### (1.3.0) Struktura klas oraz pseudo klas
+## program konsolowy będący bazą pytań przypisanych kategoriom oraz odpowiedzi na te pytania 
+
+### (1.3.0) Struktura klas oraz pseudo kod
 
 - Nowy Projekt maven
 - IdeasApplication w odpowiednim pakiecie

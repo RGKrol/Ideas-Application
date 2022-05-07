@@ -38,11 +38,15 @@ public class Question {
         this.category = category;
     }
 
+    public Category getCategory() {
+        return category;
+    }
+
     @Override
     public String toString() {
-        return "Question: '" + name + '\'' +
-                ", category: '" + category +
-                "', answers: " + answers.size();
+        return  "Question: '" + name +
+                "', " + category +
+                ", answers: " + answers.size();
     }
 
     @Override
@@ -50,7 +54,7 @@ public class Question {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Question question = (Question) o;
-        return name.equals(question.name) && category.equals(question.category) && Objects.equals(answers, question.answers);
+        return name.equals(question.name) && category.equals(question.category) && answers.equals(question.answers);
     }
 
     @Override

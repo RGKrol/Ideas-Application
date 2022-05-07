@@ -1,1 +1,0 @@
-[{"name":"jak_odpoczywać?","answers":[]},{"name":"jak","answers":[]},{"name":"jak?","answers":[]},{"name":"co?","answers":[]}]
